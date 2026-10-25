@@ -1,0 +1,257 @@
+<!doctype html>
+<!--
+    QRCoder Chrome Extension
+    Copyright (C) 2026 Miguel Nischor
+
+    File: public/popup.html
+    Description: Markup of the popup user interface.
+    Author: Miguel Nischor <miguel@nischor.com.br>
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>QRCoder</title>
+        <link rel="stylesheet" href="popup.css" />
+    </head>
+    <body>
+        <main>
+            <header class="header">
+                <img src="icons/icon-32.png" alt="" width="24" height="24" />
+                <h1>QRCoder</h1>
+                <span class="tagline" data-i18n="tagline">QR code generator</span>
+                <button
+                    id="settings-open"
+                    type="button"
+                    class="icon-button"
+                    aria-label="Settings"
+                    title="Settings"
+                    data-i18n-aria-label="settingsButtonTitle"
+                    data-i18n-title="settingsButtonTitle"
+                >
+                    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+                        <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h12M20 18h0"
+                        />
+                        <circle cx="16" cy="6" r="2" fill="none" stroke="currentColor" stroke-width="2" />
+                        <circle cx="8" cy="12" r="2" fill="none" stroke="currentColor" stroke-width="2" />
+                        <circle cx="18" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                </button>
+            </header>
+
+            <div id="main-view" class="layout">
+                <div class="column">
+                    <section class="card" aria-label="QR code" data-i18n-aria-label="previewLabel">
+                        <div class="preview">
+                            <canvas id="qr" role="img" aria-label="QR code" data-i18n-aria-label="qrAlt" hidden></canvas>
+                            <p id="preview-empty" class="preview-message muted" data-i18n="previewEmpty">
+                                Fill in the fields to see the QR code.
+                            </p>
+                            <p id="preview-error" class="preview-message error" role="alert" hidden></p>
+                        </div>
+                        <div class="status-area">
+                            <p id="qr-info" class="info muted"></p>
+                            <p id="status" class="status" role="status" aria-live="polite"></p>
+                        </div>
+                        <div class="actions">
+                            <button id="copy" type="button" class="primary" data-i18n="copyImage" disabled>
+                                Copy image
+                            </button>
+                            <button id="save-png" type="button" data-i18n="savePng" disabled>Save PNG</button>
+                            <button id="save-svg" type="button" data-i18n="saveSvg" disabled>Save SVG</button>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="column">
+                    <div class="tabs" role="tablist" aria-label="Type of QR code" data-i18n-aria-label="tabsLabel">
+                        <button
+                            id="tab-link"
+                            type="button"
+                            role="tab"
+                            class="tab"
+                            data-kind="link"
+                            aria-controls="panel-link"
+                            data-i18n="tabLink"
+                        >
+                            Link
+                        </button>
+                        <button
+                            id="tab-text"
+                            type="button"
+                            role="tab"
+                            class="tab"
+                            data-kind="text"
+                            aria-controls="panel-text"
+                            data-i18n="tabText"
+                        >
+                            Text
+                        </button>
+                        <button
+                            id="tab-wifi"
+                            type="button"
+                            role="tab"
+                            class="tab"
+                            data-kind="wifi"
+                            aria-controls="panel-wifi"
+                            data-i18n="tabWifi"
+                        >
+                            Wi-Fi
+                        </button>
+                    </div>
+
+                    <section id="panel-link" class="card panel" role="tabpanel" aria-labelledby="tab-link">
+                        <div class="field">
+                            <label for="link" data-i18n="linkLabel">Web address</label>
+                            <input
+                                id="link"
+                                type="text"
+                                inputmode="url"
+                                autocomplete="off"
+                                autocapitalize="off"
+                                spellcheck="false"
+                                placeholder="example.com"
+                                data-i18n-placeholder="linkPlaceholder"
+                            />
+                        </div>
+                        <div class="row">
+                            <button
+                                id="link-use-page"
+                                type="button"
+                                title="Fill in the address of the page you are on"
+                                data-i18n="linkUsePage"
+                                data-i18n-title="linkUsePageTitle"
+                            >
+                                Use current page
+                            </button>
+                        </div>
+                        <p class="hint" data-i18n="linkHint">
+                            Addresses without http:// or https:// get https:// added.
+                        </p>
+                    </section>
+
+                    <section id="panel-text" class="card panel" role="tabpanel" aria-labelledby="tab-text" hidden>
+                        <div class="field grow">
+                            <label for="text" data-i18n="textLabel">Text</label>
+                            <textarea
+                                id="text"
+                                autocomplete="off"
+                                spellcheck="false"
+                                placeholder="Anything you want to share"
+                                data-i18n-placeholder="textPlaceholder"
+                            ></textarea>
+                        </div>
+                    </section>
+
+                    <section id="panel-wifi" class="card panel" role="tabpanel" aria-labelledby="tab-wifi" hidden>
+                        <div class="field">
+                            <label for="ssid" data-i18n="wifiNameLabel">Network name (SSID)</label>
+                            <input id="ssid" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" />
+                        </div>
+                        <div class="field">
+                            <label for="password" data-i18n="wifiPasswordLabel">Password</label>
+                            <div class="input-row">
+                                <input
+                                    id="password"
+                                    type="password"
+                                    autocomplete="off"
+                                    autocapitalize="off"
+                                    spellcheck="false"
+                                />
+                                <button
+                                    id="password-toggle"
+                                    type="button"
+                                    aria-pressed="false"
+                                    data-i18n="showPassword"
+                                >
+                                    Show
+                                </button>
+                            </div>
+                        </div>
+                        <div class="field-pair">
+                            <div class="field">
+                                <label for="security" data-i18n="wifiSecurityLabel">Security</label>
+                                <select id="security">
+                                    <option value="WPA" data-i18n="wifiSecurityWpa">WPA / WPA2 / WPA3</option>
+                                    <option value="WEP" data-i18n="wifiSecurityWep">WEP</option>
+                                    <option value="nopass" data-i18n="wifiSecurityNone">None (open network)</option>
+                                </select>
+                            </div>
+                            <label class="check align-end">
+                                <input id="hidden" type="checkbox" />
+                                <span data-i18n="wifiHidden">Hidden network</span>
+                            </label>
+                        </div>
+                    </section>
+
+                    <section class="options" aria-label="Options" data-i18n-aria-label="optionsLabel">
+                        <div class="field-pair">
+                            <div class="field">
+                                <label for="error-correction" data-i18n="errorCorrectionLabel">Error correction</label>
+                                <select id="error-correction">
+                                    <option value="L" data-i18n="ecLow">Low (7%)</option>
+                                    <option value="M" data-i18n="ecMedium">Medium (15%)</option>
+                                    <option value="Q" data-i18n="ecQuartile">Quartile (25%)</option>
+                                    <option value="H" data-i18n="ecHigh">High (30%)</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="export-size" data-i18n="exportSizeLabel">Image size</label>
+                                <select id="export-size"></select>
+                            </div>
+                        </div>
+                    </section>
+
+                    <footer class="footer" data-i18n="footer">
+                        QR codes are generated on your device. Nothing is sent anywhere.
+                    </footer>
+                </div>
+            </div>
+
+            <section
+                id="settings-view"
+                class="card settings"
+                aria-label="Settings"
+                data-i18n-aria-label="settingsHeading"
+                hidden
+            >
+                <div class="settings-head">
+                    <button id="settings-back" type="button" class="primary" data-i18n="settingsBack">Back</button>
+                    <h2 data-i18n="settingsHeading">Settings</h2>
+                </div>
+                <div class="field">
+                    <label class="check">
+                        <input id="remember" type="checkbox" />
+                        <span data-i18n="rememberLabel">Remember what I typed while the browser is open</span>
+                    </label>
+                    <p class="hint" data-i18n="rememberHint">
+                        Kept in browser memory only, Wi-Fi password included, and erased when Chrome closes. Turning
+                        this off deletes it now.
+                    </p>
+                </div>
+                <div class="row">
+                    <button id="clear-fields" type="button" data-i18n="clearFields">Clear all fields</button>
+                </div>
+                <p id="settings-status" class="status" role="status" aria-live="polite"></p>
+            </section>
+        </main>
+        <script src="popup.js"></script>
+    </body>
+</html>
