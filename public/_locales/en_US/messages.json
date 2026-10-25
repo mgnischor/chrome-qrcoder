@@ -1,0 +1,107 @@
+{
+    "extName": { "message": "QRCoder – QR Code Generator", "description": "Extension name shown in the browser and the Web Store." },
+    "extShortName": { "message": "QRCoder", "description": "Short extension name." },
+    "extDescription": {
+        "message": "Create valid QR codes for links, text and Wi-Fi networks, then copy or save them as PNG or SVG. Everything stays on your device.",
+        "description": "Extension description. Keep it at 132 characters or fewer (Web Store limit)."
+    },
+    "actionTitle": { "message": "QRCoder – create a QR code", "description": "Tooltip of the toolbar button." },
+    "commandOpen": { "message": "Open QRCoder", "description": "Description of the keyboard shortcut that opens the popup." },
+
+    "tagline": { "message": "QR code generator", "description": "Subtitle in the popup header." },
+    "settingsButtonTitle": { "message": "Settings", "description": "Tooltip and accessible name of the settings button." },
+
+    "previewLabel": { "message": "QR code preview", "description": "Accessible name of the section that shows the QR code." },
+    "qrAlt": { "message": "QR code", "description": "Accessible name of the QR code image." },
+    "previewEmpty": { "message": "Fill in the fields to see the QR code.", "description": "Shown in place of the QR code while there is nothing to encode." },
+    "qrInfo": {
+        "message": "Version $VERSION$ · $SIZE$ × $SIZE$ modules",
+        "description": "Technical summary under the QR code. The version is the QR code version (1 to 40); the size is the number of modules (squares) per side.",
+        "placeholders": {
+            "version": { "content": "$1", "example": "3" },
+            "size": { "content": "$2", "example": "29" }
+        }
+    },
+    "copyImage": { "message": "Copy image", "description": "Button that copies the QR code image to the clipboard." },
+    "savePng": { "message": "Save PNG", "description": "Button that downloads the QR code as a PNG image." },
+    "saveSvg": { "message": "Save SVG", "description": "Button that downloads the QR code as an SVG (vector) image." },
+
+    "tabsLabel": { "message": "Type of QR code", "description": "Accessible name of the tabs that choose what the QR code contains." },
+    "tabLink": { "message": "Link", "description": "Tab: a web address." },
+    "tabText": { "message": "Text", "description": "Tab: plain text." },
+    "tabWifi": { "message": "Wi-Fi", "description": "Tab: a Wi-Fi network." },
+
+    "linkLabel": { "message": "Web address", "description": "Label of the field for the link." },
+    "linkPlaceholder": { "message": "example.com", "description": "Placeholder of the link field." },
+    "linkUsePage": { "message": "Use current page", "description": "Button that fills the link field with the address of the open page." },
+    "linkUsePageTitle": { "message": "Fill in the address of the page you are on", "description": "Tooltip of the Use current page button." },
+    "linkHint": { "message": "Addresses without http:// or https:// get https:// added.", "description": "Note under the link field." },
+
+    "textLabel": { "message": "Text", "description": "Label of the text field." },
+    "textPlaceholder": { "message": "Anything you want to share", "description": "Placeholder of the text field." },
+
+    "wifiNameLabel": { "message": "Network name (SSID)", "description": "Label of the Wi-Fi network name field. SSID is the technical name of a Wi-Fi network." },
+    "wifiPasswordLabel": { "message": "Password", "description": "Label of the Wi-Fi password field." },
+    "wifiSecurityLabel": { "message": "Security", "description": "Label of the Wi-Fi security type selector." },
+    "wifiSecurityWpa": { "message": "WPA / WPA2 / WPA3", "description": "Wi-Fi security choice. Keep the protocol names." },
+    "wifiSecurityWep": { "message": "WEP", "description": "Wi-Fi security choice. Keep the protocol name." },
+    "wifiSecurityNone": { "message": "None (open network)", "description": "Wi-Fi security choice for a network without a password." },
+    "wifiHidden": { "message": "Hidden network", "description": "Checkbox for a Wi-Fi network that does not broadcast its name." },
+    "showPassword": { "message": "Show", "description": "Button that reveals the typed password." },
+    "hidePassword": { "message": "Hide", "description": "Button that masks the typed password again." },
+
+    "optionsLabel": { "message": "Options", "description": "Accessible name of the options section." },
+    "errorCorrectionLabel": { "message": "Error correction", "description": "Label of the selector for how much of the QR code may be damaged and still scan." },
+    "ecLow": { "message": "Low (7%)", "description": "Error correction choice. The percentage is how much of the code can be damaged." },
+    "ecMedium": { "message": "Medium (15%)", "description": "Error correction choice." },
+    "ecQuartile": { "message": "Quartile (25%)", "description": "Error correction choice." },
+    "ecHigh": { "message": "High (30%)", "description": "Error correction choice." },
+    "exportSizeLabel": { "message": "Image size", "description": "Label of the selector for the size of saved and copied PNG images." },
+    "exportSizeOption": {
+        "message": "$PIXELS$ px",
+        "description": "Image size choice, in pixels.",
+        "placeholders": { "pixels": { "content": "$1", "example": "1024" } }
+    },
+    "footer": {
+        "message": "QR codes are generated on your device. Nothing is sent anywhere.",
+        "description": "Footer note of the popup."
+    },
+
+    "settingsHeading": { "message": "Settings", "description": "Heading of the settings view." },
+    "settingsBack": { "message": "Back", "description": "Button that leaves the settings view." },
+    "rememberLabel": { "message": "Remember what I typed while the browser is open", "description": "Checkbox that keeps the typed fields between popup openings." },
+    "rememberHint": {
+        "message": "Kept in browser memory only, Wi-Fi password included, and erased when Chrome closes. Turning this off deletes it now.",
+        "description": "Privacy note shown below the remember checkbox."
+    },
+    "clearFields": { "message": "Clear all fields", "description": "Button that empties every field." },
+    "statusCleared": { "message": "Fields cleared.", "description": "Status shown after the fields were emptied." },
+
+    "statusCopied": { "message": "Image copied to the clipboard.", "description": "Status shown after copying." },
+    "statusCopyFailed": { "message": "Could not copy the image. Save it as a file instead.", "description": "Status shown when copying to the clipboard failed." },
+    "statusSaved": { "message": "Download started.", "description": "Status shown after a file download started." },
+    "statusSaveFailed": { "message": "Could not save your settings.", "description": "Status shown when the settings could not be stored." },
+    "statusUsePageFailed": { "message": "Could not read the address of this page.", "description": "Status shown when the address of the open page is unavailable, for example on a browser page." },
+
+    "errorInvalidUrl": { "message": "Enter a valid web address, such as example.com.", "description": "Error shown when the link is not a web address." },
+    "errorSsidTooLong": {
+        "message": "The network name can have at most $BYTES$ bytes.",
+        "description": "Error shown when the Wi-Fi name is too long.",
+        "placeholders": { "bytes": { "content": "$1", "example": "32" } }
+    },
+    "errorPasswordRequired": { "message": "Enter the network password.", "description": "Error shown when a secured Wi-Fi network has no password." },
+    "errorPasswordLength": {
+        "message": "A WPA password has $MIN$ to $MAX$ characters.",
+        "description": "Error shown when the Wi-Fi password length is not allowed.",
+        "placeholders": {
+            "min": { "content": "$1", "example": "8" },
+            "max": { "content": "$2", "example": "63" }
+        }
+    },
+    "errorTooLong": {
+        "message": "Too much data. At most $BYTES$ bytes fit at this error correction level.",
+        "description": "Error shown when the content does not fit in any QR code.",
+        "placeholders": { "bytes": { "content": "$1", "example": "2331" } }
+    },
+    "errorGeneric": { "message": "Something went wrong. Please try again.", "description": "Fallback error." }
+}
