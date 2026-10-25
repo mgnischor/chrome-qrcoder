@@ -71,13 +71,13 @@ docs/                   Privacy policy and Chrome Web Store answers
 
 `src/core/` is split by responsibility:
 
-| File              | Responsibility                                                                         |
-| ----------------- | -------------------------------------------------------------------------------------- |
+| File              | Responsibility                                                                           |
+| ----------------- | ---------------------------------------------------------------------------------------- |
 | `tables.ts`       | Version sizes, alignment pattern positions, capacities and error correction block tables |
-| `reed-solomon.ts` | Arithmetic in GF(256) and the error correction codewords                               |
-| `encoder.ts`      | Mode selection, data codewords, interleaving, module placement, masking                |
-| `payload.ts`      | Turns a link, text or Wi-Fi details into the text the code carries                     |
-| `svg.ts`          | Renders a code as a standalone SVG document                                            |
+| `reed-solomon.ts` | Arithmetic in GF(256) and the error correction codewords                                 |
+| `encoder.ts`      | Mode selection, data codewords, interleaving, module placement, masking                  |
+| `payload.ts`      | Turns a link, text or Wi-Fi details into the text the code carries                       |
+| `svg.ts`          | Renders a code as a standalone SVG document                                              |
 
 ## Design notes
 
@@ -241,8 +241,6 @@ only exceptions; the extension never connects to either.
 
 ### Publishing
 
-- [docs/chrome-web-store.md](docs/chrome-web-store.md): answers for the Chrome Web Store _Privacy
-  practices_ tab (single purpose and permission justifications).
 - [docs/privacy-policy.md](docs/privacy-policy.md): the privacy policy. The store needs it at a public
   URL. Update it before releasing any change to what the extension stores or transmits.
 
